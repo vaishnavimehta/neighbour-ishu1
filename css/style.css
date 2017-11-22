@@ -1,0 +1,39 @@
+.centerelem{
+	text-align: center;
+}
+
+h1 {
+	font-family: "Montserrat Subrayada", sans-serif;
+	color: black;
+	margin-top: 55px;
+}
+
+#rlist li {
+	color: black;
+	font-family: "Montserrat Subrayada", sans-serif;
+	padding: 5px;
+}
+
+.listelem {
+	cursor: pointer;
+}
+
+ul{
+	margin: 5px;
+	margin-left: -25px;
+	list-style: none;
+}
+
+#mapdiv {
+    border: 2px solid black;
+    padding: 15px;
+	margin: 55px;
+    width: auto;
+    height: 550px;
+}
+
+.info-content img {
+	width: 250px;
+	height:150 px;
+    
+}

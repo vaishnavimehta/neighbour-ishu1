@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<!--stylesheets and titles-->
+		<title>Dine in New York</title>
+		
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<main>
+				<!--div containing map and error message-->
+				<div class = "col-md-8">
+				<div id="mapdiv" ></div>
+					<div data-bind = "text : emsg">
+					</div>
+				</div>
+			</main>
+			<aside>
+				<div class = "col-md-4">
+					<!--center containing heading of the page and search bar which uses knockoutJS-->
+					<h1 class="centerelem">Dine in New York</h1>
+					<br>
+					<center><input id="getLoc" placeholder="Find a Restaurant" data-bind="value : sResults, valueUpdate: 'afterkeydown', event : { keyup : getLoc }"><br>
+					</center>
+					<br>
+					<!--side list of all restaurants created with knockoutJS-->
+					<div id="rlist" >
+						<ul data-bind="foreach: markArr" class="listelem centerelem">
+							<li  data-bind = "text: title,click: $parent.markerSel,visible:val"></li>
+						</ul>
+					</div>
+				</div>
+			</aside>
+		</div>
+		<!--script initializing google API,if successful calls mapload(), else calls loaderror()-->
+		<script>
+			var map;
+			function mapload() {
+				map = new google.maps.Map(document.getElementById('mapdiv'), {
+				zoom: 12,
+				center: { lat: 40.7396, lng: -74.0089 },
+				});
+				markWindow = new google.maps.InfoWindow();
+				ko.applyBindings(new vM());         //calling of vM()
+			}
+			//gives error message to log when called
+			function loaderror() {
+				window.alert("Error!!! could not load google!");
+			}
+		</script>
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/knockout.js"></script>
+		<script src="js/script.js"></script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCevqgAZO3OUtuWkYsgo1DJSqTjL22VXno&v=3&callback=mapload" onerror="loaderror()">
+		</script>
+	</body>
+</html>
